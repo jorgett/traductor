@@ -24,66 +24,68 @@ body {
 
 /* === SIDEBAR === */
 .sidebar {
-    width: 300px;
+    width: 320px;
     background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
     color: white;
-    padding: 25px;
+    padding: 15px;
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 15px;
+    overflow-y: auto;
 }
 
 .sidebar-header h2 {
-    font-size: 1.8rem;
-    margin-bottom: 5px;
+    font-size: 1.5rem;
+    margin-bottom: 3px;
     text-align: center;
 }
 
 .sidebar-header .author {
     text-align: center;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     opacity: 0.9;
     font-style: italic;
+    margin-bottom: 5px;
 }
 
 /* === LANGUAGE SECTION === */
 .language-section {
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    padding: 20px;
+    border-radius: 12px;
+    padding: 15px;
     backdrop-filter: blur(10px);
 }
 
 .language-section h3 {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
     text-align: center;
 }
 
 .lang-selector {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
-    align-items: center;
+    flex-direction: row;
+    gap: 8px;
+    align-items: end;
 }
 
 .lang-item {
-    width: 100%;
+    flex: 1;
 }
 
 .lang-item label {
     display: block;
-    font-size: 0.9rem;
-    margin-bottom: 5px;
+    font-size: 0.8rem;
+    margin-bottom: 4px;
     font-weight: 600;
 }
 
 .lang-item select {
     width: 100%;
-    padding: 10px;
+    padding: 8px;
     border: none;
-    border-radius: 8px;
-    font-size: 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
     background: white;
     color: #333;
     cursor: pointer;
@@ -92,23 +94,24 @@ body {
 
 .lang-item select:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
 }
 
 .swap-btn {
     background: rgba(255, 255, 255, 0.2);
     border: 2px solid rgba(255, 255, 255, 0.3);
     color: white;
-    padding: 12px;
+    padding: 8px;
     border-radius: 50%;
-    font-size: 1.2rem;
+    font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    width: 45px;
-    height: 45px;
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 .swap-btn:hover {
@@ -119,45 +122,45 @@ body {
 /* === DOWNLOAD SECTION === */
 .download-section {
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    padding: 20px;
+    border-radius: 12px;
+    padding: 15px;
     backdrop-filter: blur(10px);
 }
 
 .download-section h3 {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
     text-align: center;
 }
 
 .download-form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
 }
 
 .download-selector {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: row;
+    gap: 8px;
 }
 
 .download-lang-item {
-    width: 100%;
+    flex: 1;
 }
 
 .download-lang-item label {
     display: block;
-    font-size: 0.9rem;
-    margin-bottom: 5px;
+    font-size: 0.8rem;
+    margin-bottom: 4px;
     font-weight: 600;
 }
 
 .download-lang-item select {
     width: 100%;
-    padding: 10px;
+    padding: 8px;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
     font-size: 0.9rem;
     background: white;
     color: #333;
@@ -167,23 +170,23 @@ body {
 
 .download-lang-item select:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
 }
 
 .download-btn {
     background: rgba(255, 255, 255, 0.2);
     border: 2px solid rgba(255, 255, 255, 0.3);
     color: white;
-    padding: 12px 16px;
-    border-radius: 10px;
+    padding: 10px 14px;
+    border-radius: 8px;
     font-size: 0.9rem;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    min-height: 44px;
+    gap: 6px;
+    min-height: 38px;
 }
 
 .download-btn:hover:not(:disabled) {
@@ -197,11 +200,11 @@ body {
 }
 
 .download-status {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     text-align: center;
-    padding: 8px;
+    padding: 6px;
     border-radius: 6px;
-    min-height: 20px;
+    min-height: 18px;
 }
 
 .download-status.success {
@@ -229,22 +232,31 @@ body {
 /* === MODELS SECTION === */
 .models-section {
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    padding: 20px;
+    border-radius: 12px;
+    padding: 15px;
     backdrop-filter: blur(10px);
     flex: 1;
 }
 
 .models-section h3 {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
     text-align: center;
 }
 
 .models-list {
     display: flex;
     flex-direction: column;
+    gap: 6px;
+}
+
+.model-item {
+    display: flex;
+    align-items: center;
     gap: 8px;
+    padding: 8px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
 }
 
 .model-item:hover {
@@ -262,11 +274,12 @@ body {
 .model-pair {
     font-weight: 600;
     color: white;
+    font-size: 0.9rem;
 }
 
 .model-code {
     opacity: 0.8;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: rgba(255, 255, 255, 0.7);
 }
 
@@ -274,16 +287,17 @@ body {
     background: rgba(244, 67, 54, 0.2);
     border: 1px solid rgba(244, 67, 54, 0.3);
     color: #f44336;
-    padding: 8px;
+    padding: 6px;
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 32px;
-    height: 32px;
+    min-width: 28px;
+    height: 28px;
+    flex-shrink: 0;
 }
 
 .delete-model-btn:hover {
@@ -297,13 +311,14 @@ body {
 }
 
 .delete-icon {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 }
 
 .loading {
     text-align: center;
     opacity: 0.7;
     font-style: italic;
+    font-size: 0.9rem;
 }
 
 /* === MAIN CONTENT === */
@@ -525,8 +540,9 @@ body {
         width: 100%;
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 15px;
-        padding: 15px;
+        gap: 10px;
+        padding: 10px;
+        overflow-y: visible;
     }
     
     .sidebar-header {
@@ -536,7 +552,7 @@ body {
     
     .language-section {
         flex: 1;
-        min-width: 200px;
+        min-width: 250px;
     }
     
     .models-section {
@@ -546,22 +562,27 @@ body {
     
     .download-section {
         flex: 1;
-        min-width: 200px;
+        min-width: 250px;
     }
     
     .lang-selector {
-        flex-direction: row;
+        flex-direction: column;
         align-items: center;
-        gap: 10px;
+        gap: 8px;
     }
     
     .lang-item {
-        flex: 1;
+        width: 100%;
     }
     
     .swap-btn {
         order: 2;
-        margin: 0 10px;
+        margin: 0;
+    }
+    
+    .download-selector {
+        flex-direction: column;
+        gap: 8px;
     }
     
     .message {
