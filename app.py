@@ -9,6 +9,7 @@ import os
 from flask import Flask, request, jsonify, render_template
 from translator import Translator
 from config import MODEL_PATH
+from werkzeug.exceptions import BadRequest
 
 app = Flask(__name__)
 
@@ -18,6 +19,22 @@ translator = Translator(MODEL_PATH)
 # Configuration
 app.config["DEBUG"] = False  # Disabled for cleaner output
 app.config["JSON_AS_ASCII"] = False  # Support for non-ASCII characters
+
+# Add JSON error handler
+@app.errorhandler(BadRequest)
+def handle_bad_request(e):
+    """Handle invalid JSON requests"""
+    return jsonify({"error": "Invalid JSON in request body"}), 400
+
+@app.before_request
+def validate_json():
+    """Validate JSON for POST requests"""
+    if request.method == 'POST' and request.content_type == 'application/json':
+        try:
+            # Force JSON parsing to trigger exception for invalid JSON
+            request.get_json(force=True)
+        except Exception:
+            return jsonify({"error": "Invalid JSON in request body"}), 400
 
 @app.route('/', methods=["GET"])
 def home():
@@ -135,14 +152,13 @@ def translate_batch():
         # Validate JSON payload
         if not request.json:
             return jsonify({"error": "Request must be JSON"}), 400
-        
-        # Extract required fields
+          # Extract required fields
         source = request.json.get('source')
         target = request.json.get('target')
         texts = request.json.get('texts')
         
-        # Validate required fields
-        if not all([source, target, texts]):
+        # Validate required fields exist (but allow empty list for texts)
+        if not source or not target or texts is None:
             return jsonify({
                 "error": "Missing required fields. Need: source, target, texts"
             }), 400
