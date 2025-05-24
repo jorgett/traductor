@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  translator-api:
+    build: .
+    container_name: traductor-chat
+    ports:
+      - "5000:5000"
+    volumes:
+      # Mount models directory to persist downloaded models
+      - ./data:/app/data
+    environment:
+      - FLASK_ENV=production
+      - MODEL_PATH=data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traductor Chat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>🌍 Traductor</h2>
+                <div class="author">por <strong>Jorge Toledo</strong></div>
+            </div>
+            
+            <!-- Language Selection -->
+            <div class="language-section">
+                <h3>Idiomas</h3>
+                <div class="lang-selector">
+                    <div class="lang-item">
+                        <label for="source-lang">De:</label>
+                        <select id="source-lang">
+                            <option value="en">🇺🇸 Inglés</option>
+                            <option value="es">🇪🇸 Español</option>
+                        </select>
+                    </div>
+                    <button id="swap-languages" class="swap-btn" title="Intercambiar idiomas">
+                        ⇄
+                    </button>
+                    <div class="lang-item">
+                        <label for="target-lang">A:</label>
+                        <select id="target-lang">
+                            <option value="es">🇪🇸 Español</option>
+                            <option value="en">🇺🇸 Inglés</option>
+                        </select>
+                    </div>
+                </div>
+            </div>            <!-- Download Models -->
+            <div class="download-section">
+                <h3>Descargar Modelos</h3>
+                <div class="download-form">
+                    <div class="download-selector">
+                        <div class="download-lang-item">
+                            <label for="download-source">De:</label>
+                            <select id="download-source">
+                                <option value="">Seleccionar idioma</option>
+                                <option value="en">🇺🇸 Inglés</option>
+                                <option value="es">🇪🇸 Español</option>
+                                <option value="fr">🇫🇷 Francés</option>
+                                <option value="de">🇩🇪 Alemán</option>
+                                <option value="it">🇮🇹 Italiano</option>
+                                <option value="pt">🇵🇹 Portugués</option>
+                                <option value="ru">🇷🇺 Ruso</option>
+                                <option value="zh">🇨🇳 Chino</option>
+                                <option value="ja">🇯🇵 Japonés</option>
+                                <option value="ko">🇰🇷 Coreano</option>
+                                <option value="ar">🇸🇦 Árabe</option>
+                                <option value="hi">🇮🇳 Hindi</option>
+                            </select>
+                        </div>
+                        <div class="download-lang-item">
+                            <label for="download-target">A:</label>
+                            <select id="download-target">
+                                <option value="">Seleccionar idioma</option>
+                                <option value="en">🇺🇸 Inglés</option>
+                                <option value="es">🇪🇸 Español</option>
+                                <option value="fr">🇫🇷 Francés</option>
+                                <option value="de">🇩🇪 Alemán</option>
+                                <option value="it">🇮🇹 Italiano</option>
+                                <option value="pt">🇵🇹 Portugués</option>
+                                <option value="ru">🇷🇺 Ruso</option>
+                                <option value="zh">🇨🇳 Chino</option>
+                                <option value="ja">🇯🇵 Japonés</option>
+                                <option value="ko">🇰🇷 Coreano</option>
+                                <option value="ar">🇸🇦 Árabe</option>
+                                <option value="hi">🇮🇳 Hindi</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button id="download-model" class="download-btn" disabled>
+                        <span class="download-text">Descargar Modelo</span>
+                        <span class="download-spinner" style="display: none;">⏳</span>
+                    </button>
+                    <div id="download-status" class="download-status"></div>
+                </div>
+            </div>
+
+            <!-- Available Models -->
+            <div class="models-section">
+                <h3>Modelos Descargados</h3>
+                <div id="available-models" class="models-list">
+                    <div class="loading">Cargando modelos...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Chat Area -->
+        <div class="main-content">
+            <div class="chat-header">
+                <h1>Chat de Traducción</h1>
+                <p>Traduce texto de forma fácil e interactiva</p>
+            </div>
+
+            <div class="chat-container">
+                <div id="messages" class="messages">
+                    <div class="message bot-message">
+                        <div class="message-content">
+                            ¡Hola! 👋 Soy tu traductor personal. Escribe cualquier texto y lo traduciré al idioma que elijas.
+                        </div>
+                        <div class="message-time">Ahora</div>
+                    </div>
+                </div>
+            </div>            <div class="input-container">
+                <div class="input-wrapper">
+                    <textarea 
+                        id="message-input" 
+                        placeholder="Escribe aquí el texto que quieres traducir..." 
+                        rows="2"
+                        maxlength="1000"></textarea>
+                    <button id="send-button">
+                        <span>Traducir</span>
+                        <span class="send-icon">➤</span>
+                    </button>
+                </div>
+                <div class="char-counter">
+                    <span id="char-count">0</span>/1000
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
