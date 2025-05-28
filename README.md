@@ -6,18 +6,25 @@ Una interfaz web moderna para traducción offline usando modelos de Hugging Face
 
 ## 🚀 Inicio Rápido
 
-### Windows:
-```bash
-start.bat
+### Con Docker (Recomendado):
+```powershell
+# Modo desarrollo (con setup automático)
+.\start-development.ps1
+
+# Modo producción (con setup automático)
+.\start-production.ps1
 ```
 
-### Linux/Mac:
+### Manual:
 ```bash
-chmod +x start.sh
-./start.sh
+pip install -r requirements.txt
+python download_model.py --source en --target es
+python app.py
 ```
 
 Luego abre: **http://localhost:5000**
+
+> **💡 Nota:** Los scripts detectan automáticamente si es la primera ejecución y configuran todo lo necesario (.env, modelos, etc.)
 
 ## Estructura del Proyecto
 
@@ -28,17 +35,42 @@ Luego abre: **http://localhost:5000**
 ├── download_model.py           # Utilidad para descargar modelos
 ├── config.py                   # Configuración del proyecto
 ├── requirements.txt            # Dependencias del proyecto
-├── start.bat / start.sh        # Scripts de inicio automático
 ├── Dockerfile                  # Imagen Docker
 ├── docker-compose.yml          # Orquestación de contenedores
+├── pytest.ini                 # Configuración de tests
+├── start-production.ps1        # Script inicio producción (con setup automático)
+├── start-development.ps1       # Script inicio desarrollo (con setup automático)
+├── stop-services.ps1           # Script para detener servicios
+├── cleanup.ps1                 # Script limpieza completa
+├── check-docker.ps1            # Diagnóstico Docker
+├── run-tests.ps1               # Ejecutar todas las pruebas
 ├── templates/chat.html         # Interfaz de chat
 ├── static/style.css           # Estilos CSS
 ├── static/script.js           # JavaScript del chat
+├── test/                       # Tests del proyecto
 ├── data/                       # Directorio de modelos
 └── README.md                   # Este archivo
 ```
 
 ## Instalación
+
+### Con Docker (Recomendado)
+
+1. **Verificar Docker (opcional):**
+```powershell
+.\check-docker.ps1
+```
+
+2. **Iniciar aplicación:**
+```powershell
+# Desarrollo (configuración automática en primera ejecución)
+.\start-development.ps1
+
+# Producción (configuración automática en primera ejecución)
+.\start-production.ps1
+```
+
+### Instalación Manual
 
 1. **Instalar dependencias:**
 ```bash
@@ -53,8 +85,7 @@ python download_model.py --source es --target en
 
 3. **Iniciar la aplicación:**
 ```bash
-start.bat  # Windows
-./start.sh # Linux/Mac
+python app.py
 ```
 
 ## 💬 Interfaz de Chat
@@ -92,14 +123,65 @@ curl -X POST http://localhost:5000/translate \
 
 ## 🐳 Docker
 
+### Scripts de Gestión
+
+```powershell
+# Iniciar en desarrollo (setup automático)
+.\start-development.ps1
+
+# Iniciar en producción (setup automático)
+.\start-production.ps1
+
+# Detener servicios
+.\stop-services.ps1
+
+# Limpieza completa
+.\cleanup.ps1
+
+# Verificar Docker
+.\check-docker.ps1
+
+# Ejecutar tests
+.\run-tests.ps1
+```
+
+### Comandos Manuales
+
 ```bash
 # Construir y ejecutar
 docker-compose up --build
+
+# En segundo plano
+docker-compose up -d --build
+
+# Detener
+docker-compose down
 
 # O manualmente
 docker build -t traductor-chat .
 docker run -p 5000:5000 -v $(pwd)/data:/app/data traductor-chat
 ```
+
+## 🧪 Testing
+
+### Ejecutar todas las pruebas:
+```powershell
+.\run-tests.ps1
+```
+
+### Comandos manuales:
+```bash
+# Tests unitarios
+pytest -v
+
+# Con cobertura
+pytest --cov=. --cov-report=html
+
+# Test específico
+pytest test/test_app.py -v
+```
+
+Los reportes de cobertura se generan en `htmlcov/index.html`.
 
 ## 🌍 Modelos Disponibles
 
